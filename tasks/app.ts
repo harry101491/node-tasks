@@ -1,15 +1,42 @@
-import { Observable, of, from, fromEvent, concat} from 'rxjs';
+
+// Understanding the double negation experession
+const str: string = 'harshit';
+
+console.log('The value of str boolean is: ', !!str);
+
+
+// import { Observable, of, from, fromEvent, concat} from 'rxjs';
+
+//#region Subscribing Observables with Observers
+
+// const currentTime$ = new Observable(subscribe => {
+//     const currentTimeString = new Date().toLocaleDateString();
+//     subscribe.next(currentTimeString);
+//     subscribe.complete();
+// });
+
+// currentTime$.subscribe((value) => console.log(value));
+
+// setTimeout(() => {
+//     cur
+// }, 1000);
+
+
+//#endregion
+
+
+//#region Creating Observables
 
 // passing observer object
-const myObserver = {
-    next: (value) => console.log(value),
-    error: (err) => console.log(err),
-    complete: () => console.log('It has completed')
-};
+// const myObserver = {
+//     next: (value) => console.log(value),
+//     error: (err) => console.log(err),
+//     complete: () => console.log('It has completed')
+// };
 
-const source$ = of(1, 2, 3);
+// const source$ = of(1, 2, 3);
 
-source$.subscribe(myObserver);
+// source$.subscribe(myObserver);
 
 
 // Understanding the of, from and fromEvent operators
@@ -47,3 +74,5 @@ source$.subscribe(myObserver);
 // const source$ = new Observable(subscribe);
 
 // source$.subscribe(value => console.log(value));
+
+//#endregion
