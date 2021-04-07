@@ -5,7 +5,7 @@ const { promisify } = require('util');
 
 const fileInfo = promisify(stat);
 
-const videoFile = './powder-day.mp4';
+const videoFile = './image2.jpg';
 
 createServer(async (req, res) => {
     const { size } = await fileInfo(videoFile);
@@ -15,11 +15,11 @@ createServer(async (req, res) => {
      * First we take the range and then check whether it is present or not 
      * and if it present then it will be in the form of bytes = 0-{bytes}.
      */
-    const range = req.headers.range;
-    
-    res.writeHead(200, { 
+    // const range = req.headers.range;
+
+    res.writeHead(200, {
         'Content-Length': size,
-        'Content-Type': 'video/mp4'
+        'Content-Type': 'image/jpeg'
     });
     createReadStream(videoFile).pipe(res);
 

@@ -1,15 +1,18 @@
-import { Observable, of, from, fromEvent, concat} from 'rxjs';
 
-// passing observer object
-const myObserver = {
-    next: (value) => console.log(value),
-    error: (err) => console.log(err),
-    complete: () => console.log('It has completed')
-};
+import * as examples from './rxjs';
 
-const source$ = of(1, 2, 3);
+// import { Observable, of, from, fromEvent, concat} from 'rxjs';
 
-source$.subscribe(myObserver);
+// // passing observer object
+// const myObserver = {
+//     next: (value) => console.log(value),
+//     error: (err) => console.log(err),
+//     complete: () => console.log('It has completed')
+// };
+
+// const source$ = of(1, 2, 3);
+
+// source$.subscribe(myObserver);
 
 
 // Understanding the of, from and fromEvent operators

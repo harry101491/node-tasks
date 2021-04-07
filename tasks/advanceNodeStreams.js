@@ -1,5 +1,5 @@
 // creating a transform duplex
-const { Transform } = require('stream');  
+const { Transform } = require('stream');
 
 class ReplaceString extends Transform {
 
@@ -39,7 +39,7 @@ process.stdin
 //         super();
 //         this.delay = delayMs;
 //     }
-    
+
 //     _write(chunk, encoding, callback) {
 //         this.push(chunk);
 //         setTimeout(callback, this.delay);
@@ -153,7 +153,7 @@ process.stdin
 
 // // A custom implementation of the Readable that will implement stream creation for the array
 // class StreamForArray extends Readable {
-    
+
 //     constructor(array) {
 //         // the stream can read binary or string making utf-8 will make sure 
 //         // it will read as string
@@ -183,7 +183,7 @@ process.stdin
 
 // rough implementation of the stream object as readable stream
 // class StreamForObject extends Readable {
-    
+
 //     constructor(object) {
 //         super({ encoding: 'UTF-8' });
 //         this.object = object;
