@@ -1,8 +1,27 @@
+
+// function addStudents(numStudents) {
+//     return numStudents - 1;
+// }
+
+// const obj = ["", ""];
+// if (new Boolean(false)) {
+//     console.log("it is truthy");
+// }
+
+// console.log("the value: ", +"     \t");
+
+// console.log(addStudents("16"));
+
+// console.log("value is:",String([]));
+
+// console.log("value is:", Number({ valueOf() { return 3; } }));
+
+// console.log("boolean value is:", Boolean([]));
 // Utility Types
 // 'use strict';
 
 // NonNullable Type
-type T0 = NonNullable<string | number | undefined | null>;
+// type T0 = NonNullable<string | number | undefined | null>;
 
 // Extract Type
 // type T1 = Extract<"a" | "b" | "c", "a" | "f">;
