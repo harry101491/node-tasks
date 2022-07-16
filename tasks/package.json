@@ -20,7 +20,7 @@
     "lodash": "^4.17.20",
     "log-update": "^4.0.0",
     "rxjs": "^6.6.7",
-    "validator": "^10.8.0",
+    "validator": "^13.7.0",
     "yargs": "^13.3.0"
   }
 }
