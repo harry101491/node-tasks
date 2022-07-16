@@ -1,54 +1,252 @@
+// Utility Types
+// 'use strict';
+
+// NonNullable Type
+type T0 = NonNullable<string | number | undefined | null>;
+
+// Extract Type
+// type T1 = Extract<"a" | "b" | "c", "a" | "f">;
+
+// Exclude Type
+// type T2 = Exclude<string | number | (() => void), (() => void)>;
+
+// Pick and Omit Type
+// interface Todo {
+//     title: string;
+//     description: string;
+//     completed: boolean;
+// }
+
+// type TodoPreview = Pick<Todo, 'completed' | 'title'>
+// type TodoOmit = Omit<Todo, 'completed'>;
+
+// const todo: TodoPreview = {
+//     title: 'Clean Room',
+//     completed: false
+// };
+
+// const todoOmit: TodoOmit = {
+//     title: 'clean desk',
+//     description: 'clean desk and organize files in computer'
+// };
+
+// Record Type
+// interface CatInfo {
+//     age: number;
+//     breed: string;
+// }
+
+// type CatName = 'miffy' | 'boris' | 'mordred';
+
+// const cats: Record<CatName, CatInfo> = {
+//     miffy: { age: 2, breed: 'Persian' },
+//     boris: { age: 5, breed: 'Maine Coon' },
+//     mordred: { age: 16, breed: 'British Shorthair' }
+// };
+
+// console.log(cats.boris);
+
+// Readonly Type
+// interface Todo {
+//     title: string;
+// }
+
+// // at compile time
+// const todo: Readonly<Todo> = {
+//     title: 'Get Milk'
+// };
+
+// Object.freeze(todo);
+
+// todo.title = 'Get Milk Powder'; // cannot reassign readonly property
+
+// Required Type; makes every property required
+// interface Props {
+//     a?: number;
+//     b?: number;
+// }
+
+// const obj: Props = { a: 5 };
+// const obj2: Required<Props> = { a: 5 }; // error as b property is missing
+
+// Partial Type
+// interface Todo {
+//     title: string;
+//     description: string;
+// }
+
+// function updateTodo(todo: Todo, fieldsToUpdate: Partial<Todo>) {
+//     return { ...todo, ...fieldsToUpdate };
+// }
+
+// const todo1: Todo = {
+//     title: 'organize desk',
+//     description: 'clear clutter'
+// };
+
+// const todo2 = updateTodo(todo1, { description: 'throw the garbage' });
+// console.log(todo2);
+
+// Genrics
+// enum TaskType {
+//     feature = "feature",
+//     bug = "bug"
+// }
+
+// type Task<T = TaskType> = {
+//     name: string;
+//     type: T;
+// }
+
+// const task: Task = { name: 'My new Feature', type: TaskType.feature };
+// task.type = TaskType.bug;
+
+// type FeatureType = Task<TaskType.feature>;
+
+// const newFeatureTask: FeatureType = { name: 'My new Feature', type: TaskType.bug }; // cannot assign to a TaskType.bug
+// newFeatureTask.type = TaskType.bug; // not assignable as I have specified TaskType.feature earlier
+
+// Lookup Types
+// type Animal = {
+//     human: {
+//         isTwoLegged: boolean;
+//         isMammel: boolean;
+//         canLaugh: boolean;
+//     };
+//     dogs: {
+//         isTwoLegged: boolean;
+//         isMammel: boolean;
+//         canLaugh: boolean;
+//     }
+// }
+
+// type Dog = Animal['dogs'];
+// type Human = Animal['human'];
+
+// const harshit: Human = {
+//     isMammel: true,
+//     canLaugh: true,
+//     isTwoLegged: true
+// }
+
+// const heidi: Dog = {
+//     isMammel: true,
+//     isTwoLegged: false,
+//     canLaugh: false
+// };
+
+
+// assert type guards
+// import { AssertionError } from "assert"
+
+
+// function assertIsNumber(val: any): asserts val is number {
+//     if (typeof val !== 'number') {
+//         throw new AssertionError({ message: 'Not a Number' });
+//     }
+// }
+
+// const double = (num: any) => {
+//     assertIsNumber(num);
+
+//     return num * 2;
+// }
+
+// console.log(double(4));
+
+// guards in Typescript
+// type type1 = {
+//     name: string;
+//     delimiter: "comma" | "period";
+// }
+
+// type type2 = {
+//     text: string;
+// }
+
+// type Fish = {
+//     swim: () => void;
+// }
+
+// type Bird = {
+//     fly: () => void;
+// }
+
+// type Pet = Fish | Bird;
+
+// const IsFish = (pet: Pet): pet is Fish => {
+//     return pet !== undefined;
+// }
+
+// const findFishOrBird = () => {
+//     const pet: Pet = {} as Pet;
+
+//     if(IsFish(pet)) {
+//         pet.swim();
+//     } else {
+//         pet.fly();
+//     }
+// }
+
+// const fun = (doc: type1 | type2) => {
+//     if ('delimiter' in doc) {
+//         // opertation of type1
+//     } else {
+//         // operation of type2
+//     }
+// }
+
 
 // Binary Tree Interview Problems
-class BinaryNode {
-    public value: string;
-    public left: BinaryNode;
-    public right: BinaryNode;
+// class BinaryNode {
+//     public value: string;
+//     public left: BinaryNode;
+//     public right: BinaryNode;
 
-    constructor(val) {
-        this.value = val;
-        this.left = null;
-        this.right = null;
-    }
-}
+//     constructor(val) {
+//         this.value = val;
+//         this.left = null;
+//         this.right = null;
+//     }
+// }
 
-const a = new BinaryNode('a');
-const b = new BinaryNode('b');
-const c = new BinaryNode('c');
-const d = new BinaryNode('d');
-const e = new BinaryNode('e');
-const f = new BinaryNode('f');
+// const a = new BinaryNode('a');
+// const b = new BinaryNode('b');
+// const c = new BinaryNode('c');
+// const d = new BinaryNode('d');
+// const e = new BinaryNode('e');
+// const f = new BinaryNode('f');
 
-a.left = b;
-a.right = c;
-b.left = d;
-b.right = e;
-c.right = f;
+// a.left = b;
+// a.right = c;
+// b.left = d;
+// b.right = e;
+// c.right = f;
 
-// Target Value
-const findValue = (root: BinaryNode, target: string): boolean => {
-    if (root === null) return false;
+// // Target Value
+// const findValue = (root: BinaryNode, target: string): boolean => {
+//     if (root === null) return false;
 
-    return root.value === target || findValue(root.left, target) || findValue(root.right, target);
-}
+//     return root.value === target || findValue(root.left, target) || findValue(root.right, target);
+// }
 
-const maxPath = (root: BinaryNode, distance: number) => {
-    if (root === null) return 0;
+// const maxPath = (root: BinaryNode, distance: number) => {
+//     if (root === null) return 0;
 
-    const leftMax = maxPath(root.left, distance + 1);
-    const righMax = maxPath(root.right, distance + 1);
+//     const leftMax = maxPath(root.left, distance + 1);
+//     const righMax = maxPath(root.right, distance + 1);
 
-    return Math.max(leftMax, righMax) + 1;
-}
+//     return Math.max(leftMax, righMax) + 1;
+// }
 
-const sumTree = (root: BinaryNode) => {
-    if (root === null) return 0;
+// const sumTree = (root: BinaryNode) => {
+//     if (root === null) return 0;
 
-    const leftSum = sumTree(root.left);
-    const rightSum = sumTree(root.right);
+//     const leftSum = sumTree(root.left);
+//     const rightSum = sumTree(root.right);
 
-    return root.value + leftSum + rightSum;
-}
+//     return root.value + leftSum + rightSum;
+// }
 
 // const minTree = (root: BinaryNode) => {
 //     if (root === null) return Number.MAX_VALUE;
@@ -56,41 +254,41 @@ const sumTree = (root: BinaryNode) => {
 //     return Math.min(root.value, minTree(root.left), minTree(root.right));
 // }
 
-const depthFirstTreeRecurse = (root: BinaryNode): any[] => {
-    if (root === null) return [];
+// const depthFirstTreeRecurse = (root: BinaryNode): any[] => {
+//     if (root === null) return [];
 
-    const leftValues = depthFirstTreeRecurse(root.left);
-    const rightValues = depthFirstTreeRecurse(root.right);
+//     const leftValues = depthFirstTreeRecurse(root.left);
+//     const rightValues = depthFirstTreeRecurse(root.right);
 
-    return [ root.value, ...leftValues, ...rightValues ];
-    // console.log(root.value);
+//     return [ root.value, ...leftValues, ...rightValues ];
+//     // console.log(root.value);
 
-    // if (root.left !== null) {
-    //     depthFirstTreeRecurse(root.left);
-    // }
-    // if (root.right !== null) {
-    //     depthFirstTreeRecurse(root.right);
-    // }
-};
+//     // if (root.left !== null) {
+//     //     depthFirstTreeRecurse(root.left);
+//     // }
+//     // if (root.right !== null) {
+//     //     depthFirstTreeRecurse(root.right);
+//     // }
+// };
 
-const depthFirstTreeIterative = (root) => {
-    const stack = [ root ];
+// const depthFirstTreeIterative = (root) => {
+//     const stack = [ root ];
 
-    while(stack.length > 0) {
-        const current = stack.pop();
-        console.log(current.value);
-        if (current.right !== null) {
-            stack.push(current.right);
-        }
-        if (current.left !== null) {
-            stack.push(current.left);
-        }
-    }
-}
+//     while(stack.length > 0) {
+//         const current = stack.pop();
+//         console.log(current.value);
+//         if (current.right !== null) {
+//             stack.push(current.right);
+//         }
+//         if (current.left !== null) {
+//             stack.push(current.left);
+//         }
+//     }
+// }
 
 // depthFirstTreeIterative(a);
 // console.log(depthFirstTreeRecurse(a));
-console.log(maxPath(a, 0));
+// console.log(maxPath(a, 0));
 
 // Graph Representation in JavaScript
 
