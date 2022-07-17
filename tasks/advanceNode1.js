@@ -61,7 +61,7 @@ class PromiseQueue {
     }
 
     run() {
-        while(this.runAnother) {
+        while (this.runAnother) {
             // first take out the promise
             const promise = this.todo.shift();
             // add this to the running tasks
@@ -97,7 +97,7 @@ promiseQueue.run();
 //     delay(3),
 //     delay(5)]);
 
-    
+
 // const start = async () => {
 //     const firstOfAll = await multiPromise;
 //     const files = await readDirAsync(__dirname);
