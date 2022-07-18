@@ -135,19 +135,13 @@ var getStudentById = (studentId) =>
 //   });
 // }
 
-function printRecords(recordIds) {
+var printRecords = (recordIds) => {
   var records = recordIds.map(getStudentById);
 
   // arrow function
-  records.sort((record1, record2) => {
-    if (record1.name < record2.name) {
-      return -1;
-    } else if (record1.name > record2.name) {
-      return 1;
-    } else {
-      return 0;
-    }
-  });
+  records.sort((record1, record2) =>
+    record1.name < record2.name ? -1 : record1.name > record2.name ? 1 : 0
+  );
 
   //   records.sort(function sortByNameAsc(record1, record2) {
   //     if (record1.name < record2.name) {
@@ -170,9 +164,9 @@ function printRecords(recordIds) {
   //       `${record.name} (${record.id}): ${record.paid ? 'Paid' : 'Not Paid'}`
   //     );
   //   });
-}
+};
 
-function printStudentsToEnroll() {
+var printStudentsToEnroll = () => {
   // arrow function
   var idsNotEnrolled = studentRecords
     .filter((record) => record.paid && !currentEnrollment.includes(record.id))
@@ -187,9 +181,9 @@ function printStudentsToEnroll() {
   //     });
 
   return [...currentEnrollment, ...idsNotEnrolled];
-}
+};
 
-function remindUnpaid(recordIds) {
+var remindUnpaid = (recordIds) => {
   // arrow function
   var filteredIds = recordIds.filter((id) => {
     var record = getStudentById(id);
@@ -202,4 +196,4 @@ function remindUnpaid(recordIds) {
   //   });
 
   printRecords(filteredIds);
-}
+};
