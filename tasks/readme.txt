@@ -1,3 +1,0 @@
-Harshit 
-Pareek
-Kritika
