@@ -11,6 +11,7 @@ import fs from 'fs';
 import path from 'path';
 import { Transform } from 'stream';
 import zlib from 'zlib';
+import { CAF } from 'caf';
 
 /**
  * help will always be a boolean
@@ -20,6 +21,16 @@ const args = minimist(process.argv.slice(2), {
     boolean: ["help", "in", "out", "compress", "decompress"],
     string: ["file"]
 });
+
+processFile = CAF(processFile);
+
+function streamComplete(stream) {
+    return new Promise(function (res) {
+        stream.on('end', function() {
+            res();
+        });
+    });
+}
 
 
 const BASE_PATH = path.resolve(process.env.BASE_PATH ?? path.resolve());
@@ -31,10 +42,22 @@ if (args.help) {
     args.in ||
     args._.includes("-")
 ) {
-    processFile(process.stdin);
+    let tooLong = CAF.timeout(100, "Took too Long");
+
+    processFile(tooLong, process.stdin)
+        .then(function () {
+            console.log("Complete!");
+        })
+        .catch(error);
 } else if (args.file) {
     const fileStream = fs.createReadStream(path.join(BASE_PATH, args.file));
-    processFile(fileStream);
+    let tooLong = CAF.timeout(100, "Took too Long");
+
+    processFile(tooLong, fileStream)
+        .then(function () {
+            console.log("Complete!");
+        })
+        .catch(error);
 } else {
     // error condition
     error("Invalid Usage.", true);
@@ -46,7 +69,7 @@ if (args.help) {
 
 // **************************
 
-function processFile(readStream) {
+function* processFile(signal, readStream) {
     let resultStream = readStream;
     let outStream;
 
@@ -77,6 +100,14 @@ function processFile(readStream) {
     }
 
     resultStream.pipe(outStream);
+
+    // do something with that signal
+    signal.pr.catch(function () {
+        resultStream.unpipe(outStream);
+        resultStream.destroy();
+    });
+
+    yield streamComplete(resultStream);
 }
 
 function error(msg, includeHelp = false) {
